@@ -4,7 +4,7 @@ import MySQLdb;
 import clr;
 clr.AddReferenceByPartialName("Pluton")
 
-class Hello:
+class Pugin:
     def On_Command(self, cmd):
         Player = cmd.User
         args = cmd.args
