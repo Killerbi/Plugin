@@ -1,0 +1,26 @@
+__author__ = 'Makc'
+
+import MySQLdb;
+import clr;
+clr.AddReferenceByPartialName("Pluton")
+
+class Hello:
+    def On_Command(self, cmd):
+        Player = cmd.User
+        args = cmd.args
+
+        if cmd.cmd == "ping":
+            Player.Message(str(args[0]))
+
+
+        if cmd.cmd == "dist":
+            if args != "":
+                try:
+                    con = MySQLdb.connect(host="localhost", user="root", passwd="usbw", db="test", charset='utf8', port=3307)
+                    cur = con.cursor()
+                    cur.execute('SET NAMES `utf8`')
+                    cur.execute('INSERT INTO `test`.`city` (`id_city`, `name`) VALUES (NULL, '+str(args[0])+')')
+                    result = cur.fetchall()
+                except MySQLdb.Error:
+                    print(MySQLdb.Error.message)
+                    print("No no no")
